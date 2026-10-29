@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Universal Download Redirector for Android
 // @namespace    https://github.com/nullmahfuz/
-// @version      2.0
+// @version      2.1
 // @description  Intercept direct download links in Chromium browsers and show Android app chooser for all download managers
 // @author       Md. Mahfuz Hasan
 // @license      MIT
@@ -13,7 +13,7 @@
 (function() {
     'use strict';
 
-    // File extensions to intercept
+
     const targetExtensions = [
         'zip', 'rar', '7z', 'tar', 'gz', 'iso',
         'apk', 'xapk', 'apkm',
@@ -31,8 +31,8 @@
             const strippedUrl = absoluteUrl.replace(/^https?:\/\//i, '');
             const scheme = absoluteUrl.startsWith('https') ? 'https' : 'http';
 
-            // Triggers Android's global chooser without restricting to a specific package
-            const intentUri = `intent://${strippedUrl}#Intent;scheme=${scheme};action=android.intent.action.VIEW;type=*/*;end`;
+   
+            const intentUri = `intent://${strippedUrl}#Intent;scheme=${scheme};action=android.intent.action.VIEW;end`;
 
             window.location.href = intentUri;
         } catch (err) {
